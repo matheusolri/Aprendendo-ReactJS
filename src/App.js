@@ -1,37 +1,47 @@
-
-function App() {
-  //praticando aprendizado de Props
-  const Equipe = (props) => {
-    return (
-      <div>
-         <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade}/>
-         <Social instagram={props.instagram}/>
-         <hr/>
-      </div>
-    );
+import React,{Component} from "react";
+  //Aplicando Class Component
+  class Equipe extends Component{
+    render(){
+      return(
+        <div>
+          <Sobre nome={this.props.nome} cargo={this.props.cargo} Idade={this.props.idade}/>
+          <Social/>
+          <hr/>
+        </div>
+      );
+    }
   }
-  const Sobre = (props) => {
-    return (
-      <div>
-        <h1>Olá sou o(a):{props.nome}</h1>
-        <h2>meu cargo é : {props.cargo}</h2>
-        <h2>minha idade é : {props.idade}</h2>
-        
-      </div>
-    );
-  }
-  const Social = (props)=>{
-    return(
-      <a href={props.instagram}>Instagram</a>
-    );
-  }
-
-  return (
+    
+class Sobre extends Component{
+render(){
+  return(
     <div>
-      <h1>Conheça nossa equipe</h1>
-      <Equipe nome="Matheus" cargo="Desenvolvedor Front" idade="20" instagram="https://www.instagram.com/matheus_olri/"  />
-      <Equipe nome="Anderson" cargo="Desenvolvedor Back" idade="22" instagram="https://www.instagram.com/anderson.campos_/" />
+      <h2>Olá sou o {this.props.nome}</h2>
+      <h2>meu cargo :{this.props.cargo}</h2>
+      <h2>tenho :{this.props.idade}</h2>
     </div>
   );
 }
+}
+const Social = ()=>{
+  return(
+    <div>
+    <a>Linkedin</a>
+    <a>Facebook</a>
+    </div>
+
+  );
+}    
+
+function App(){
+  return(
+    <div>
+      <h1>Minha Equipe :</h1>
+      <Equipe nome="Matheus" cargo="Programador" idade="20"/>
+      <Equipe nome="Lucas" cargo="Design" idade="27"/>
+    </div>
+  );
+}
+
+
 export default App;
