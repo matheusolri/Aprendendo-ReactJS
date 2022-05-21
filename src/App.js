@@ -1,47 +1,47 @@
-import React,{Component} from "react";
-  //Aplicando Class Component
-  class Equipe extends Component{
-    render(){
-      return(
-        <div>
-          <Sobre nome={this.props.nome} cargo={this.props.cargo} Idade={this.props.idade}/>
-          <Social/>
-          <hr/>
-        </div>
-      );
+
+import React, { Component } from "react";
+
+//trabalhando com States
+
+class App extends Component {
+  constructor(props) {
+    super(props);//dando autorização para usar tudo do componente
+    this.state = {
+      contador: 0 //declarando state contador dentro do meu construtor
     }
+    this.diminuir = this.diminuir.bind(this);// aqui nos usamos o bind para que a função aumentar seja usada e acessada
+    this.aumentar = this.aumentar.bind(this);// aqui nos usamos o/ bind para que a função aumentar seja usada e acessada
   }
-    
-class Sobre extends Component{
-render(){
-  return(
-    <div>
-      <h2>Olá sou o {this.props.nome}</h2>
-      <h2>meu cargo :{this.props.cargo}</h2>
-      <h2>tenho :{this.props.idade}</h2>
-    </div>
-  );
-}
-}
-const Social = ()=>{
-  return(
-    <div>
-    <a>Linkedin</a>
-    <a>Facebook</a>
-    </div>
+  //Funçoes de aumentar e diminuir
+  diminuir() {
 
-  );
-}    
+    let estado = this.state; //atribuindo todas minhas states a variavel estado
+    if (estado.contador == 0) {
+      alert('voçe chegou a 0')
+      return;
+    }
+    estado.contador = estado.contador - 1;
+    this.setState(estado);//setando a state com seu novo valor
+  }
+  aumentar() {
 
-function App(){
-  return(
-    <div>
-      <h1>Minha Equipe :</h1>
-      <Equipe nome="Matheus" cargo="Programador" idade="20"/>
-      <Equipe nome="Lucas" cargo="Design" idade="27"/>
-    </div>
-  );
+    let estado = this.state //atribuindo todas minhas states a variavel estado
+    estado.contador += 1;
+    this.setState(estado);//setando a state com seu novo valor
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>contador</h1>
+        <h3>
+          <button onClick={this.diminuir}>-</button> {/* botão chama a função diminuir */}
+          {this.state.contador}{/* chamando a state contador */}
+          <button onClick={this.aumentar}>+</button> {/* botão chama a função aumentar */}
+        </h3>
+      </div>
+    );
+  }
 }
-
 
 export default App;
